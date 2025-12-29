@@ -1,18 +1,17 @@
 extends CharacterBody2D
 
-@export var speed := 120.0
+@export var max_speed := 140.0
+@export var accel := 900.0
+@export var drag := 650.0
+@export var turn := 800.0
 
-func _physics_process(_delta):
-	var dir := Vector2(
-		Input.get_action_strength("player_right") - Input.get_action_strength("player_left"),
-		Input.get_action_strength("player_down") - Input.get_action_strength("player_up")
-	)
+func _physics_process(delta: float) -> void:
+	var input := Input.get_vector("player_left", "player_right", "player_up", "player_down")
+	var desired := input * max_speed
 
-	if dir != Vector2.ZERO:
-		dir = dir.normalized()
+	if input != Vector2.ZERO:
+		velocity = velocity.move_toward(desired, turn * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
 
-	velocity = dir * speed
 	move_and_slide()
-
-	# Pixel snap for clean rendering
-	global_position = global_position.round()
