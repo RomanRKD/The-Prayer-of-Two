@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://dyh61n5afex86"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
