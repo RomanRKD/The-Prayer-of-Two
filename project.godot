@@ -21,6 +21,14 @@ window/size/viewport_height=192
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[file_customization]
+
+folder_colors={
+"res://IntroTitleScreen/": "yellow",
+"res://IntroTitleScreen/Art/": "green",
+"res://Scenes/": "red"
+}
+
 [input]
 
 player_up={
