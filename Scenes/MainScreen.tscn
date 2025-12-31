@@ -1,0 +1,290 @@
+[gd_scene load_steps=22 format=3 uid="uid://dyh61n5afex86"]
+
+[ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
+[ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
+[ext_resource type="Texture2D" uid="uid://dkdsryhyi5jr6" path="res://IntroTitleScreen/Art/CloseMountians.png" id="3_6w2yd"]
+[ext_resource type="Texture2D" uid="uid://bujvhvvwdkugq" path="res://IntroTitleScreen/Art/Stump.png" id="4_yrp7b"]
+[ext_resource type="Texture2D" uid="uid://c21oqmagbah6g" path="res://IntroTitleScreen/Art/Leaves.png" id="5_jbbrf"]
+[ext_resource type="Texture2D" uid="uid://brtyabsqe2v31" path="res://IntroTitleScreen/Art/Grave:candles.png" id="6_b6jij"]
+[ext_resource type="Texture2D" uid="uid://c6h5bjqiysc2f" path="res://IntroTitleScreen/Art/FloorTiles.png" id="7_x85yl"]
+[ext_resource type="Texture2D" uid="uid://b58t4keh4gaw7" path="res://IntroTitleScreen/Art/Leaf.png" id="8_wdlwy"]
+[ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://PlayerMovement.gd" id="9_7h3y6"]
+[ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://CameraScript.gd" id="10_i850e"]
+[ext_resource type="Texture2D" uid="uid://dbm1660hydcnd" path="res://icon.svg" id="11_f1lux"]
+
+[sub_resource type="Gradient" id="Gradient_4sht0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.14690721, 0.4974227, 0.7654639)
+colors = PackedColorArray(0.105882354, 0.53333336, 0.16862746, 1, 0.050980393, 0.32156864, 0.19607843, 1, 0.05882353, 0.21176471, 0.19607843, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ji6et"]
+gradient = SubResource("Gradient_4sht0")
+
+[sub_resource type="CurveTexture" id="CurveTexture_qhfr7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw2oa"]
+lifetime_randomness = 0.07
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape_scale = Vector3(1.28, 1.03, 1)
+emission_shape = 1
+emission_sphere_radius = 57.31
+angle_min = -424.6
+angle_max = 322.2
+inherit_velocity_ratio = 0.29
+direction = Vector3(2.5, 1.1, 0)
+spread = 36.36
+initial_velocity_min = 34.89
+initial_velocity_max = 102.71
+gravity = Vector3(12, 110, 0)
+damping_max = 3.742
+scale_min = 0.7
+scale_max = 1.1999999
+color_initial_ramp = SubResource("GradientTexture1D_ji6et")
+hue_variation_curve = SubResource("CurveTexture_qhfr7")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_influence_min = 0.043
+turbulence_influence_max = 0.113000005
+turbulence_initial_displacement_min = -7.7999988
+turbulence_initial_displacement_max = 3.3000016
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v5kbk"]
+polygon = PackedVector2Array(-138, 103, -81, 109, -19, 109, 84, 109, 129, 108, 182, 102, 182, 124, -138, 125)
+
+[sub_resource type="Curve" id="Curve_okw2d"]
+_data = [Vector2(0.0062893108, 0.9155397), 0.0, 0.0, 0, 0, Vector2(0.7122641, 0.046804667), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_k6q2w"]
+offsets = PackedFloat32Array(0, 0.14261168, 0.34536082, 0.6890034, 1)
+colors = PackedColorArray(0.88235295, 0, 0, 1, 0.7947139, 0.4839061, 0.12064593, 1, 0.89248765, 0.7612635, 0.26816097, 1, 0.5147912, 0.50525033, 0.50108606, 0.71900004, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2mpk6"]
+colors = PackedColorArray(0.96805894, 0.96805894, 0.96805894, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_86eq2"]
+gradient = SubResource("Gradient_2mpk6")
+fill = 1
+fill_from = Vector2(0.48290598, 0.5)
+fill_to = Vector2(0.85470086, 0.19871795)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Art" type="Node2D" parent="."]
+position = Vector2(160, 96)
+
+[node name="Sprites" type="Node2D" parent="Art"]
+
+[node name="Background" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("1_qhfr7")
+
+[node name="FarMountians" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("2_ivxpn")
+
+[node name="CloseMountians" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("3_6w2yd")
+
+[node name="Stump" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("4_yrp7b")
+
+[node name="Leaves" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("5_jbbrf")
+
+[node name="Grave" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("6_b6jij")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Art/Sprites"]
+texture_filter = 1
+position = Vector2(-22, -31)
+amount = 16
+texture = ExtResource("8_wdlwy")
+lifetime = 16.0
+speed_scale = 0.5
+randomness = 0.11
+fixed_fps = 60
+collision_base_size = 0.2
+trail_section_subdivisions = 8
+process_material = SubResource("ParticleProcessMaterial_iw2oa")
+
+[node name="Floor" type="LightOccluder2D" parent="Art/Sprites/GPUParticles2D"]
+position = Vector2(0, 3)
+occluder = SubResource("OccluderPolygon2D_v5kbk")
+
+[node name="Ground" type="Sprite2D" parent="Art/Sprites"]
+texture_filter = 1
+texture = ExtResource("7_x85yl")
+
+[node name="Candles" type="Node2D" parent="Art"]
+
+[node name="Fire" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-5.5, 65.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Fire2" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-4.5, 70.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire2"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Fire3" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-6.5, 74.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire3"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Fire4" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-15.5, 72.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire4"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Fire5" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-17.5, 69.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire5"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Fire6" type="CPUParticles2D" parent="Art/Candles"]
+position = Vector2(-20.5, 71.5)
+amount = 10
+lifetime = 0.3
+speed_scale = 0.15
+randomness = 0.61
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 23.0
+initial_velocity_max = 32.0
+damping_min = 23.009
+damping_max = 49.558
+angle_min = -25.5
+angle_max = 38.2
+scale_amount_curve = SubResource("Curve_okw2d")
+color_ramp = SubResource("Gradient_k6q2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire6"]
+scale = Vector2(0.11, 0.11)
+color = Color(0.7562728, 0.5162405, 0.27379042, 1)
+energy = 0.65
+texture = SubResource("GradientTexture2D_86eq2")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(160, 96)
+script = ExtResource("9_7h3y6")
+
+[node name="MainCamera" type="Camera2D" parent="Player"]
+limit_enabled = false
+script = ExtResource("10_i850e")
+target_path = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("11_f1lux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(0.65, 0.65)
+shape = SubResource("RectangleShape2D_nldqp")

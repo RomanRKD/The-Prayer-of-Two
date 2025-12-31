@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ip0aoopv5urj"
-path="res://.godot/imported/MaiTree.png-49a8460e28a3ace2a2703566cd6c7a3f.ctex"
+uid="uid://b58t4keh4gaw7"
+path="res://.godot/imported/Leaf.png-87d3b95a40293e633392ac1dcfd72340.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntroTitleScreen/Art/MaiTree.png"
-dest_files=["res://.godot/imported/MaiTree.png-49a8460e28a3ace2a2703566cd6c7a3f.ctex"]
+source_file="res://IntroTitleScreen/Art/Leaf.png"
+dest_files=["res://.godot/imported/Leaf.png-87d3b95a40293e633392ac1dcfd72340.ctex"]
 
 [params]
 
