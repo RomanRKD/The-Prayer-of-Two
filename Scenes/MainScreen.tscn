@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=24 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
 [ext_resource type="Texture2D" uid="uid://dkdsryhyi5jr6" path="res://IntroTitleScreen/Art/CloseMountians.png" id="3_6w2yd"]
 [ext_resource type="Texture2D" uid="uid://bujvhvvwdkugq" path="res://IntroTitleScreen/Art/Stump.png" id="4_yrp7b"]
+[ext_resource type="Shader" uid="uid://chsfd8704rb7q" path="res://Scenes/TreeSway.gdshader" id="5_ivxpn"]
 [ext_resource type="Texture2D" uid="uid://c21oqmagbah6g" path="res://IntroTitleScreen/Art/Leaves.png" id="5_jbbrf"]
 [ext_resource type="Texture2D" uid="uid://brtyabsqe2v31" path="res://IntroTitleScreen/Art/Grave:candles.png" id="6_b6jij"]
 [ext_resource type="Texture2D" uid="uid://c6h5bjqiysc2f" path="res://IntroTitleScreen/Art/FloorTiles.png" id="7_x85yl"]
@@ -11,6 +12,23 @@
 [ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://PlayerMovement.gd" id="9_7h3y6"]
 [ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://CameraScript.gd" id="10_i850e"]
 [ext_resource type="Texture2D" uid="uid://dbm1660hydcnd" path="res://icon.svg" id="11_f1lux"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w2yd"]
+shader = ExtResource("5_ivxpn")
+shader_parameter/speed = 1.2
+shader_parameter/amplitude_px = 3.0
+shader_parameter/height_offset = 0.25
+shader_parameter/messiness_px = 2.0
+shader_parameter/messiness_speed = 1.8
+shader_parameter/gust_strength_px = 2.0
+shader_parameter/gust_speed = 0.35
+shader_parameter/noise_scale = 0.18
+shader_parameter/offset = 0.0
+shader_parameter/edge_boost = 2.0
+shader_parameter/pixel_step = 1.0
+shader_parameter/fragment_rows = 74.65600349866
+shader_parameter/fragment_phase_amount = 1.6
+shader_parameter/fragment_amp_jitter = 0.35
 
 [sub_resource type="Gradient" id="Gradient_4sht0"]
 interpolation_mode = 1
@@ -99,6 +117,7 @@ texture = ExtResource("4_yrp7b")
 
 [node name="Leaves" type="Sprite2D" parent="Art/Sprites"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_6w2yd")
 texture = ExtResource("5_jbbrf")
 
 [node name="Grave" type="Sprite2D" parent="Art/Sprites"]
@@ -125,6 +144,8 @@ occluder = SubResource("OccluderPolygon2D_v5kbk")
 [node name="Ground" type="Sprite2D" parent="Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("7_x85yl")
+
+[node name="Node2D" type="Node2D" parent="Art/Sprites"]
 
 [node name="Candles" type="Node2D" parent="Art"]
 
