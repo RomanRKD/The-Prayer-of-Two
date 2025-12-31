@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=11 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://PlayerMovement.gd" id="1_2qmk8"]
+[ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_6rouy"]
 [ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://CameraScript.gd" id="2_6rouy"]
+[ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_o3pug"]
+[ext_resource type="Texture2D" uid="uid://dkdsryhyi5jr6" path="res://IntroTitleScreen/Art/CloseMountians.png" id="3_4y04l"]
 [ext_resource type="Texture2D" uid="uid://dbm1660hydcnd" path="res://icon.svg" id="3_t6x14"]
+[ext_resource type="Texture2D" uid="uid://c6h5bjqiysc2f" path="res://IntroTitleScreen/Art/FloorTiles.png" id="4_okw2d"]
+[ext_resource type="Texture2D" uid="uid://ip0aoopv5urj" path="res://IntroTitleScreen/Art/MaiTree.png" id="5_4y04l"]
+[ext_resource type="Texture2D" uid="uid://brtyabsqe2v31" path="res://IntroTitleScreen/Art/Grave:candles.png" id="6_okw2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
 
@@ -10,24 +16,44 @@
 
 [node name="Art" type="Node2D" parent="."]
 position = Vector2(160, 96)
-scale = Vector2(2.4843752, 1.4765625)
 
 [node name="Background" type="Sprite2D" parent="Art"]
 texture_filter = 1
+texture = ExtResource("1_6rouy")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="FarMountians" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("2_o3pug")
+
+[node name="CloseMountians" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("3_4y04l")
+
+[node name="Ground" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("4_okw2d")
+
+[node name="Tree" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("5_4y04l")
+
+[node name="Grave" type="Sprite2D" parent="Art"]
+texture_filter = 1
+texture = ExtResource("6_okw2d")
+
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(160, 96)
 script = ExtResource("1_2qmk8")
 
-[node name="MainCamera" type="Camera2D" parent="CharacterBody2D"]
+[node name="MainCamera" type="Camera2D" parent="Player"]
 limit_enabled = false
 script = ExtResource("2_6rouy")
 target_path = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_t6x14")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(0.65, 0.65)
 shape = SubResource("RectangleShape2D_nldqp")
