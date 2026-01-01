@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=34 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -97,13 +97,7 @@ colors = PackedColorArray(0.105882354, 0.53333336, 0.16862746, 1, 0.050980393, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ji6et"]
 gradient = SubResource("Gradient_4sht0")
 
-[sub_resource type="Curve" id="Curve_i850e"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="CurveTexture" id="CurveTexture_qhfr7"]
-curve = SubResource("Curve_i850e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw2oa"]
 lifetime_randomness = 0.07
@@ -117,14 +111,16 @@ angle_min = -424.6
 angle_max = 322.2
 inherit_velocity_ratio = 0.29
 direction = Vector3(2.5, 1.1, 0)
-spread = 36.36
+spread = 52.92
 initial_velocity_min = 34.89
 initial_velocity_max = 102.71
-gravity = Vector3(12, 110, 0)
+gravity = Vector3(25, 110, 0)
 damping_max = 3.742
 scale_min = 0.7
 scale_max = 1.1999999
 color_initial_ramp = SubResource("GradientTexture1D_ji6et")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.18999997
 hue_variation_curve = SubResource("CurveTexture_qhfr7")
 turbulence_enabled = true
 turbulence_noise_strength = 0.5
