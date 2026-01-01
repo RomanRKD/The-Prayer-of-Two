@@ -43,48 +43,48 @@ shader_parameter/speed = 1.09
 shader_parameter/base_lock = 0.1390000066025
 shader_parameter/canopy_start = 0.0430000020425
 shader_parameter/canopy_curve = 0.5
-shader_parameter/offset = 4.87
-shader_parameter/amp_min = 10.000000475
-shader_parameter/amp_max = 16.00000076
+shader_parameter/offset = 0.0
+shader_parameter/amp_min = 14.0
+shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
 shader_parameter/amp_speed = 0.18
 shader_parameter/y_comp = 0.12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7h3y6"]
 shader = ExtResource("8_7h3y6")
-shader_parameter/speed = 1.0
-shader_parameter/base_lock = 0.25
-shader_parameter/canopy_start = 0.1
-shader_parameter/canopy_curve = 3.0
+shader_parameter/speed = 1.09
+shader_parameter/base_lock = 0.139
+shader_parameter/canopy_start = 0.043
+shader_parameter/canopy_curve = 0.5
 shader_parameter/offset = 0.0
-shader_parameter/amp_min = 10.000000475
-shader_parameter/amp_max = 16.00000076
+shader_parameter/amp_min = 14.0
+shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
 shader_parameter/amp_speed = 0.18
 shader_parameter/y_comp = 0.12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i850e"]
 shader = ExtResource("8_7h3y6")
-shader_parameter/speed = 1.0
-shader_parameter/base_lock = 0.25
-shader_parameter/canopy_start = 0.1
-shader_parameter/canopy_curve = 3.0
+shader_parameter/speed = 1.09
+shader_parameter/base_lock = 0.139
+shader_parameter/canopy_start = 0.043
+shader_parameter/canopy_curve = 0.5
 shader_parameter/offset = 0.0
-shader_parameter/amp_min = 10.000000475
-shader_parameter/amp_max = 16.00000076
+shader_parameter/amp_min = 14.0
+shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
 shader_parameter/amp_speed = 0.18
 shader_parameter/y_comp = 0.12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f1lux"]
 shader = ExtResource("8_7h3y6")
-shader_parameter/speed = 1.0
-shader_parameter/base_lock = 0.25
-shader_parameter/canopy_start = 0.1
-shader_parameter/canopy_curve = 3.0
+shader_parameter/speed = 1.09
+shader_parameter/base_lock = 0.139
+shader_parameter/canopy_start = 0.043
+shader_parameter/canopy_curve = 0.5
 shader_parameter/offset = 0.0
-shader_parameter/amp_min = 10.000000475
-shader_parameter/amp_max = 16.00000076
+shader_parameter/amp_min = 14.0
+shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
 shader_parameter/amp_speed = 0.18
 shader_parameter/y_comp = 0.12
@@ -202,21 +202,21 @@ material = SubResource("ShaderMaterial_7h3y6")
 position = Vector2(-25, 66)
 texture = ExtResource("12_7h3y6")
 region_enabled = true
-region_rect = Rect2(129, 150, 9, 24)
+region_rect = Rect2(117, 148, 34, 26)
 
 [node name="P3" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
 material = SubResource("ShaderMaterial_i850e")
 position = Vector2(76, 69)
 texture = ExtResource("13_i850e")
 region_enabled = true
-region_rect = Rect2(236, 157, 10, 17)
+region_rect = Rect2(224, 155, 37, 19)
 
 [node name="P4" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
 material = SubResource("ShaderMaterial_f1lux")
 position = Vector2(138, 59)
 texture = ExtResource("14_f1lux")
 region_enabled = true
-region_rect = Rect2(294, 142, 9, 26)
+region_rect = Rect2(280, 139, 36, 29)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Art/Sprites"]
 texture_filter = 1
