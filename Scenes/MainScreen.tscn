@@ -109,12 +109,12 @@ emission_shape = 1
 emission_sphere_radius = 57.31
 angle_min = -424.6
 angle_max = 322.2
-inherit_velocity_ratio = 0.29
-direction = Vector3(2.5, 1.1, 0)
+inherit_velocity_ratio = 0.02
+direction = Vector3(0, 1.1, 0)
 spread = 52.92
 initial_velocity_min = 34.89
 initial_velocity_max = 102.71
-gravity = Vector3(25, 110, 0)
+gravity = Vector3(0, 110, 0)
 damping_max = 3.742
 scale_min = 0.7
 scale_max = 1.1999999
@@ -214,20 +214,20 @@ texture = ExtResource("14_f1lux")
 region_enabled = true
 region_rect = Rect2(280, 139, 36, 29)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Art/Sprites"]
+[node name="FrontLeaves" type="GPUParticles2D" parent="Art/Sprites"]
 texture_filter = 1
-position = Vector2(-22, -31)
+position = Vector2(-25, -31)
 amount = 16
 texture = ExtResource("8_wdlwy")
 lifetime = 16.0
 speed_scale = 0.5
-randomness = 0.11
+randomness = 0.29
 fixed_fps = 60
 collision_base_size = 0.2
 trail_section_subdivisions = 8
 process_material = SubResource("ParticleProcessMaterial_iw2oa")
 
-[node name="Floor" type="LightOccluder2D" parent="Art/Sprites/GPUParticles2D"]
+[node name="Floor" type="LightOccluder2D" parent="Art/Sprites/FrontLeaves"]
 position = Vector2(0, 3)
 occluder = SubResource("OccluderPolygon2D_v5kbk")
 
