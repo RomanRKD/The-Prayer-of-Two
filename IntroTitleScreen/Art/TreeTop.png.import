@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtyabsqe2v31"
-path="res://.godot/imported/Grave:candles.png-099bb27e5a81c2f0d3a0e99507467170.ctex"
+uid="uid://cek05j2pduk34"
+path="res://.godot/imported/TreeTop.png-aa6b1568409a9c461e6cd36f49c91499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntroTitleScreen/Art/Grave:candles.png"
-dest_files=["res://.godot/imported/Grave:candles.png-099bb27e5a81c2f0d3a0e99507467170.ctex"]
+source_file="res://IntroTitleScreen/Art/TreeTop.png"
+dest_files=["res://.godot/imported/TreeTop.png-aa6b1568409a9c461e6cd36f49c91499.ctex"]
 
 [params]
 

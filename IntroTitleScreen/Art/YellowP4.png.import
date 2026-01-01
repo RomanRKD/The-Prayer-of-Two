@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6h5bjqiysc2f"
-path="res://.godot/imported/FloorTiles.png-2e8ef76e7eaae3d8a57e24586a47eeb2.ctex"
+uid="uid://cj66i74np6muf"
+path="res://.godot/imported/YellowP4.png-161d12dbb747456fc8a2dcce5554882b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntroTitleScreen/Art/FloorTiles.png"
-dest_files=["res://.godot/imported/FloorTiles.png-2e8ef76e7eaae3d8a57e24586a47eeb2.ctex"]
+source_file="res://IntroTitleScreen/Art/YellowP4.png"
+dest_files=["res://.godot/imported/YellowP4.png-161d12dbb747456fc8a2dcce5554882b.ctex"]
 
 [params]
 

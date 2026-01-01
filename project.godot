@@ -27,7 +27,8 @@ window/stretch/scale_mode="integer"
 folder_colors={
 "res://IntroTitleScreen/": "yellow",
 "res://IntroTitleScreen/Art/": "green",
-"res://Scenes/": "red"
+"res://Scenes/": "red",
+"res://Shaders/": "purple"
 }
 
 [input]
