@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=44 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -18,6 +18,16 @@
 [ext_resource type="Texture2D" uid="uid://ct5cyyswcseu7" path="res://IntroTitleScreen/Art/YellowP2.png" id="12_7h3y6"]
 [ext_resource type="Texture2D" uid="uid://0ixejxrn3xbi" path="res://IntroTitleScreen/Art/YellowP3.png" id="13_i850e"]
 [ext_resource type="Texture2D" uid="uid://cj66i74np6muf" path="res://IntroTitleScreen/Art/YellowP4.png" id="14_f1lux"]
+[ext_resource type="Script" uid="uid://dt26yn2pphwd6" path="res://Scenes/CloudSpawner.gd" id="16_x718d"]
+[ext_resource type="PackedScene" uid="uid://diytov1yjgodq" path="res://Scenes/CloudSprite.tscn" id="17_khvou"]
+[ext_resource type="Texture2D" uid="uid://dojcl0yejhda" path="res://IntroTitleScreen/Art/Clouds/Clouds1.png" id="18_ajrcq"]
+[ext_resource type="Texture2D" uid="uid://dqdwi34yhjj1e" path="res://IntroTitleScreen/Art/Clouds/Clouds2.png" id="19_dhx4k"]
+[ext_resource type="Texture2D" uid="uid://c6fwnnh4vs646" path="res://IntroTitleScreen/Art/Clouds/Clouds3.png" id="20_x3cy0"]
+[ext_resource type="Texture2D" uid="uid://4n8hhicgf6fw" path="res://IntroTitleScreen/Art/Clouds/Clouds4.png" id="21_8lptr"]
+[ext_resource type="Texture2D" uid="uid://dfapecsgfwe01" path="res://IntroTitleScreen/Art/Clouds/Clouds5.png" id="22_tg2ix"]
+[ext_resource type="Texture2D" uid="uid://2coaj8qfcsep" path="res://IntroTitleScreen/Art/Clouds/Clouds6.png" id="23_3rscq"]
+[ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
+[ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6w2yd"]
 shader = ExtResource("5_ivxpn")
@@ -43,7 +53,7 @@ shader_parameter/speed = 1.09
 shader_parameter/base_lock = 0.1390000066025
 shader_parameter/canopy_start = 0.0430000020425
 shader_parameter/canopy_curve = 0.5
-shader_parameter/offset = 0.0
+shader_parameter/offset = 2.0
 shader_parameter/amp_min = 14.0
 shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
@@ -69,7 +79,7 @@ shader_parameter/speed = 1.09
 shader_parameter/base_lock = 0.139
 shader_parameter/canopy_start = 0.043
 shader_parameter/canopy_curve = 0.5
-shader_parameter/offset = 0.0
+shader_parameter/offset = 1.0
 shader_parameter/amp_min = 14.0
 shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
@@ -82,7 +92,7 @@ shader_parameter/speed = 1.09
 shader_parameter/base_lock = 0.139
 shader_parameter/canopy_start = 0.043
 shader_parameter/canopy_curve = 0.5
-shader_parameter/offset = 0.0
+shader_parameter/offset = 0.3
 shader_parameter/amp_min = 14.0
 shader_parameter/amp_max = 20.0
 shader_parameter/amp_rare_min = 6.5
@@ -97,13 +107,7 @@ colors = PackedColorArray(0.105882354, 0.53333336, 0.16862746, 1, 0.050980393, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ji6et"]
 gradient = SubResource("Gradient_4sht0")
 
-[sub_resource type="Curve" id="Curve_wdlwy"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="CurveTexture" id="CurveTexture_qhfr7"]
-curve = SubResource("Curve_wdlwy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw2oa"]
 lifetime_randomness = 0.07
@@ -125,8 +129,6 @@ damping_max = 3.742
 scale_min = 0.7
 scale_max = 1.1999999
 color_initial_ramp = SubResource("GradientTexture1D_ji6et")
-hue_variation_min = -2.2351742e-08
-hue_variation_max = 0.18999997
 hue_variation_curve = SubResource("CurveTexture_qhfr7")
 turbulence_enabled = true
 turbulence_noise_strength = 0.5
@@ -177,6 +179,20 @@ texture = ExtResource("2_ivxpn")
 [node name="CloseMountians" type="Sprite2D" parent="Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("3_6w2yd")
+
+[node name="CloudSpawnerFar" type="Node2D" parent="Art/Sprites"]
+position = Vector2(-160, -96)
+script = ExtResource("16_x718d")
+cloud_scene = ExtResource("17_khvou")
+cloud_textures = Array[Texture2D]([ExtResource("18_ajrcq"), ExtResource("19_dhx4k"), ExtResource("20_x3cy0"), ExtResource("21_8lptr"), ExtResource("22_tg2ix"), ExtResource("23_3rscq"), ExtResource("24_rgbuo"), ExtResource("25_c1xsu")])
+cloud_weights = Array[float]([8.0, 3.0, 9.0, 9.0, 6.0, 2.0, 9.0, 9.0])
+y_top = 20.0
+y_bottom = 85.0
+speed_min = 2.0
+speed_max = 7.0
+scale_max = 1.0
+
+[node name="Clouds" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
 
 [node name="Stump" type="Sprite2D" parent="Art/Sprites"]
 texture = ExtResource("4_6w2yd")
@@ -243,8 +259,6 @@ texture = ExtResource("9_6w2yd")
 [node name="Ground" type="Sprite2D" parent="Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("10_yrp7b")
-
-[node name="Node2D" type="Node2D" parent="Art/Sprites"]
 
 [node name="Candles" type="Node2D" parent="Art"]
 
