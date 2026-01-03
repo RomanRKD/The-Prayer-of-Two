@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=55 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://0ixejxrn3xbi" path="res://IntroTitleScreen/Art/YellowP3.png" id="13_i850e"]
 [ext_resource type="Texture2D" uid="uid://cj66i74np6muf" path="res://IntroTitleScreen/Art/YellowP4.png" id="14_f1lux"]
 [ext_resource type="Texture2D" uid="uid://bs78aleg41363" path="res://IntroTitleScreen/Art/TreeInside.png" id="15_dhx4k"]
+[ext_resource type="Texture2D" uid="uid://dngqombkh5o03" path="res://IntroTitleScreen/Art/TreeInsideEdges.png" id="15_x3cy0"]
 [ext_resource type="Script" uid="uid://dt26yn2pphwd6" path="res://Scenes/CloudSpawner.gd" id="16_x718d"]
 [ext_resource type="PackedScene" uid="uid://diytov1yjgodq" path="res://Scenes/CloudSprite.tscn" id="17_khvou"]
 [ext_resource type="Script" uid="uid://drdoqm5ogkxjc" path="res://Scenes/TrunkToggle.gd" id="17_x3cy0"]
@@ -32,8 +33,21 @@
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 [ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8lptr"]
-radius = 16.666687
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cy0"]
+size = Vector2(213.4981, 150.09846)
+
+[sub_resource type="Gradient" id="Gradient_x3cy0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8lptr"]
+gradient = SubResource("Gradient_x3cy0")
+fill = 1
+fill_from = Vector2(0.49137932, 0.5)
+fill_to = Vector2(0.9051724, 0.06896552)
+
+[sub_resource type="Gradient" id="Gradient_8lptr"]
+offsets = PackedFloat32Array(0, 0.33490565, 0.6698113, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6w2yd"]
 shader = ExtResource("5_ivxpn")
@@ -198,6 +212,67 @@ texture = ExtResource("2_ivxpn")
 texture_filter = 1
 texture = ExtResource("3_6w2yd")
 
+[node name="Tree" type="Node2D" parent="Art/Sprites"]
+position = Vector2(-160, -96)
+
+[node name="TreeInside" type="Sprite2D" parent="Art/Sprites/Tree"]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(160, 96)
+texture = ExtResource("15_dhx4k")
+
+[node name="TreeTopEdges" type="Sprite2D" parent="Art/Sprites/Tree"]
+z_index = 1
+position = Vector2(160, 96)
+texture = ExtResource("15_x3cy0")
+
+[node name="TreeTrunk" type="Sprite2D" parent="Art/Sprites/Tree"]
+z_index = 2
+position = Vector2(160, 96)
+texture = ExtResource("4_6w2yd")
+
+[node name="Entrance" type="Area2D" parent="Art/Sprites/Tree" node_paths=PackedStringArray("trunk_top")]
+z_index = 2
+position = Vector2(6, 0)
+script = ExtResource("17_x3cy0")
+trunk_top = NodePath("../TreeTrunk")
+player_path = NodePath("../../../../Player")
+fade_duration = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Art/Sprites/Tree/Entrance"]
+position = Vector2(117.5, 155)
+scale = Vector2(0.12646483, 0.49300975)
+shape = SubResource("RectangleShape2D_x3cy0")
+
+[node name="TreeLight" type="Node2D" parent="Art/Sprites"]
+light_mask = 4
+visibility_layer = 4
+
+[node name="PointLight2D" type="PointLight2D" parent="Art/Sprites/TreeLight"]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-32, 82)
+scale = Vector2(0.73, 0.788)
+energy = 6.0
+blend_mode = 2
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_8lptr")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Art/Sprites/TreeLight"]
+position = Vector2(-32, 71)
+amount = 6
+lifetime = 3.0
+emission_shape = 1
+emission_sphere_radius = 10.97
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+color_ramp = SubResource("Gradient_8lptr")
+hue_variation_min = -0.05
+hue_variation_max = 0.06
+
 [node name="CloudSpawnerFar" type="Node2D" parent="Art/Sprites"]
 position = Vector2(-160, -96)
 script = ExtResource("16_x718d")
@@ -215,35 +290,14 @@ kill_margin_right = 60.0
 
 [node name="Clouds" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
 
-[node name="Tree" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
-
-[node name="TreeInside" type="Sprite2D" parent="Art/Sprites/CloudSpawnerFar/Tree"]
-visible = false
-position = Vector2(160, 96)
-texture = ExtResource("15_dhx4k")
-
-[node name="TreeTrunk" type="Sprite2D" parent="Art/Sprites/CloudSpawnerFar/Tree"]
-visible = false
-position = Vector2(160, 96)
-texture = ExtResource("4_6w2yd")
-
-[node name="Entrance" type="Area2D" parent="Art/Sprites/CloudSpawnerFar/Tree" node_paths=PackedStringArray("trunk_top")]
-script = ExtResource("17_x3cy0")
-trunk_top = NodePath("../TreeTrunk")
-player_path = NodePath("../../../../../Player")
-fade_duration = 0.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Art/Sprites/CloudSpawnerFar/Tree/Entrance"]
-position = Vector2(133, 137.00002)
-scale = Vector2(0.18, 0.49300975)
-shape = SubResource("CircleShape2D_8lptr")
-
 [node name="TreeLeaves" type="Sprite2D" parent="Art/Sprites"]
+z_index = 2
 texture_filter = 1
 material = SubResource("ShaderMaterial_6w2yd")
 texture = ExtResource("6_yrp7b")
 
 [node name="Grave" type="Sprite2D" parent="Art/Sprites"]
+z_index = 2
 texture_filter = 1
 texture = ExtResource("6_qhfr7")
 
@@ -257,7 +311,7 @@ region_enabled = true
 region_rect = Rect2(18, 153, 20, 17)
 
 [node name="P2" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
-z_index = 1
+z_index = 2
 material = SubResource("ShaderMaterial_7h3y6")
 position = Vector2(-25, 66)
 texture = ExtResource("12_7h3y6")
@@ -279,6 +333,7 @@ region_enabled = true
 region_rect = Rect2(280, 139, 36, 29)
 
 [node name="FrontLeaves" type="GPUParticles2D" parent="Art/Sprites"]
+z_index = 2
 texture_filter = 1
 position = Vector2(-25, -31)
 amount = 16
@@ -299,13 +354,14 @@ occluder = SubResource("OccluderPolygon2D_v5kbk")
 texture = ExtResource("9_6w2yd")
 
 [node name="Ground" type="Sprite2D" parent="Art/Sprites"]
-z_index = 1
+z_index = 2
 texture_filter = 1
 texture = ExtResource("10_yrp7b")
 
 [node name="Candles" type="Node2D" parent="Art"]
 
 [node name="Fire" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-5.5, 65.5)
 amount = 10
 lifetime = 0.3
@@ -330,6 +386,7 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Fire2" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-4.5, 70.5)
 amount = 10
 lifetime = 0.3
@@ -354,6 +411,7 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Fire3" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-6.5, 74.5)
 amount = 10
 lifetime = 0.3
@@ -378,6 +436,7 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Fire4" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-15.5, 72.5)
 amount = 10
 lifetime = 0.3
@@ -402,6 +461,7 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Fire5" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-17.5, 69.5)
 amount = 10
 lifetime = 0.3
@@ -426,6 +486,7 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Fire6" type="CPUParticles2D" parent="Art/Candles"]
+z_index = 2
 position = Vector2(-20.5, 71.5)
 amount = 10
 lifetime = 0.3

@@ -6,23 +6,21 @@ extends Area2D
 @export var fade_duration := 0.15
 
 var _fade_tween: Tween
-var _hidden := false  # current state of trunk_top (false = visible, true = hidden)
 
 func _ready() -> void:
 	monitoring = true
 	body_entered.connect(_on_body_entered)
-
-	# Initialize state from current alpha (optional safety)
-	if trunk_top:
-		_hidden = trunk_top.modulate.a <= 0.01
+	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node) -> void:
 	if not _is_player(body):
 		return
+	_fade_trunk(false)
 
-	# Toggle each time player crosses the entrance area
-	_hidden = not _hidden
-	_fade_trunk(not _hidden)  # show = !hidden
+func _on_body_exited(body: Node) -> void:
+	if not _is_player(body):
+		return
+	_fade_trunk(true)
 
 func _fade_trunk(show: bool) -> void:
 	if trunk_top == null:
