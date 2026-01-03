@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=61 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 [ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
+[ext_resource type="Texture2D" uid="uid://dbkf4ak3kn8xb" path="res://Fairy.png" id="32_8lptr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cy0"]
 size = Vector2(213.4981, 150.09846)
@@ -127,7 +128,13 @@ colors = PackedColorArray(0.105882354, 0.53333336, 0.16862746, 1, 0.050980393, 0
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ji6et"]
 gradient = SubResource("Gradient_4sht0")
 
+[sub_resource type="Curve" id="Curve_x3cy0"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_qhfr7"]
+curve = SubResource("Curve_x3cy0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iw2oa"]
 lifetime_randomness = 0.07
@@ -180,6 +187,35 @@ fill_from = Vector2(0.48290598, 0.5)
 fill_to = Vector2(0.85470086, 0.19871795)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg2ix"]
+atlas = ExtResource("32_8lptr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rscq"]
+atlas = ExtResource("32_8lptr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgbuo"]
+atlas = ExtResource("32_8lptr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1xsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg2ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rscq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgbuo")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 9.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajrcq"]
 
@@ -520,13 +556,14 @@ limit_enabled = false
 script = ExtResource("10_i850e")
 target_path = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("11_f1lux")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(0.65, 0.65)
 shape = SubResource("RectangleShape2D_nldqp")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_c1xsu")
+animation = &"fly"
+frame_progress = 0.48475116
 
 [node name="NextScreenTrigger" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(126.99999, 199)
