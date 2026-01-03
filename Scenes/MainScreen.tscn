@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=48 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://2coaj8qfcsep" path="res://IntroTitleScreen/Art/Clouds/Clouds6.png" id="23_3rscq"]
 [ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
+[ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6w2yd"]
 shader = ExtResource("5_ivxpn")
@@ -161,10 +162,22 @@ fill_to = Vector2(0.85470086, 0.19871795)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajrcq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khvou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khvou"]
+size = Vector2(110, 20)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Art" type="Node2D" parent="."]
 position = Vector2(160, 96)
+
+[node name="Sprite2D" type="Sprite2D" parent="Art"]
+position = Vector2(0, 282)
+scale = Vector2(2.52, 2.8799977)
+texture = ExtResource("11_f1lux")
 
 [node name="Sprites" type="Node2D" parent="Art"]
 
@@ -185,12 +198,15 @@ position = Vector2(-160, -96)
 script = ExtResource("16_x718d")
 cloud_scene = ExtResource("17_khvou")
 cloud_textures = Array[Texture2D]([ExtResource("18_ajrcq"), ExtResource("19_dhx4k"), ExtResource("20_x3cy0"), ExtResource("21_8lptr"), ExtResource("22_tg2ix"), ExtResource("23_3rscq"), ExtResource("24_rgbuo"), ExtResource("25_c1xsu")])
-cloud_weights = Array[float]([8.0, 3.0, 9.0, 9.0, 6.0, 2.0, 9.0, 9.0])
-y_top = 20.0
-y_bottom = 85.0
+cloud_weights = Array[float]([8.0, 3.0, 9.0, 9.0, 6.0, 3.0, 9.0, 9.0])
+cloud_count = 4
+y_top = 25.0
+y_bottom = 100.0
 speed_min = 2.0
-speed_max = 7.0
-scale_max = 1.0
+speed_max = 4.0
+bob_amp_min = 0.8
+bob_amp_max = 1.8
+kill_margin_right = 60.0
 
 [node name="Clouds" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
 
@@ -407,10 +423,11 @@ energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(160, 96)
+position = Vector2(270, 49)
 script = ExtResource("9_7h3y6")
 
 [node name="MainCamera" type="Camera2D" parent="Player"]
+top_level = true
 limit_enabled = false
 script = ExtResource("10_i850e")
 target_path = NodePath("..")
@@ -422,3 +439,32 @@ texture = ExtResource("11_f1lux")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(0.65, 0.65)
 shape = SubResource("RectangleShape2D_nldqp")
+
+[node name="NextScreenTrigger" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector2(126.99999, 199)
+scale = Vector2(1.7734592, 0.23928064)
+script = ExtResource("29_khvou")
+camera = NodePath("../Player/MainCamera")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextScreenTrigger"]
+position = Vector2(0, 6.3769425e-05)
+shape = SubResource("RectangleShape2D_ajrcq")
+
+[node name="CollisionShapes" type="Node2D" parent="."]
+
+[node name="IntroScene" type="StaticBody2D" parent="CollisionShapes"]
+physics_material_override = SubResource("PhysicsMaterial_khvou")
+
+[node name="RightFloor" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(143, 174, 143, 192, 320, 192, 320, 168, 228, 174)
+
+[node name="LeftFloor" type="CollisionShape2D" parent="CollisionShapes/IntroScene"]
+position = Vector2(55, 183)
+shape = SubResource("RectangleShape2D_khvou")
+
+[node name="Tree" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+polygon = PackedVector2Array(169, 7, 197, 30, 205, 66, 194, 101, 169, 125, 145.27167, 125.86287, 138, 126, 137, 119, 122, 119, 118, 146, 115, 166, 110, 173, 41, 7)
+
+[node name="Grave" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+polygon = PackedVector2Array(138, 149, 150, 149, 153, 155, 153, 174, 144, 174, 138, 151)
