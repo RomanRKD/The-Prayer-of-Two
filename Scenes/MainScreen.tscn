@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=51 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -18,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://ct5cyyswcseu7" path="res://IntroTitleScreen/Art/YellowP2.png" id="12_7h3y6"]
 [ext_resource type="Texture2D" uid="uid://0ixejxrn3xbi" path="res://IntroTitleScreen/Art/YellowP3.png" id="13_i850e"]
 [ext_resource type="Texture2D" uid="uid://cj66i74np6muf" path="res://IntroTitleScreen/Art/YellowP4.png" id="14_f1lux"]
+[ext_resource type="Texture2D" uid="uid://bs78aleg41363" path="res://IntroTitleScreen/Art/TreeInside.png" id="15_dhx4k"]
 [ext_resource type="Script" uid="uid://dt26yn2pphwd6" path="res://Scenes/CloudSpawner.gd" id="16_x718d"]
 [ext_resource type="PackedScene" uid="uid://diytov1yjgodq" path="res://Scenes/CloudSprite.tscn" id="17_khvou"]
+[ext_resource type="Script" uid="uid://drdoqm5ogkxjc" path="res://Scenes/TrunkToggle.gd" id="17_x3cy0"]
 [ext_resource type="Texture2D" uid="uid://dojcl0yejhda" path="res://IntroTitleScreen/Art/Clouds/Clouds1.png" id="18_ajrcq"]
 [ext_resource type="Texture2D" uid="uid://dqdwi34yhjj1e" path="res://IntroTitleScreen/Art/Clouds/Clouds2.png" id="19_dhx4k"]
 [ext_resource type="Texture2D" uid="uid://c6fwnnh4vs646" path="res://IntroTitleScreen/Art/Clouds/Clouds3.png" id="20_x3cy0"]
@@ -29,6 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 [ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lptr"]
+radius = 16.666687
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6w2yd"]
 shader = ExtResource("5_ivxpn")
@@ -210,10 +215,30 @@ kill_margin_right = 60.0
 
 [node name="Clouds" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
 
-[node name="Stump" type="Sprite2D" parent="Art/Sprites"]
+[node name="Tree" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
+
+[node name="TreeInside" type="Sprite2D" parent="Art/Sprites/CloudSpawnerFar/Tree"]
+visible = false
+position = Vector2(160, 96)
+texture = ExtResource("15_dhx4k")
+
+[node name="TreeTrunk" type="Sprite2D" parent="Art/Sprites/CloudSpawnerFar/Tree"]
+visible = false
+position = Vector2(160, 96)
 texture = ExtResource("4_6w2yd")
 
-[node name="Tree" type="Sprite2D" parent="Art/Sprites"]
+[node name="Entrance" type="Area2D" parent="Art/Sprites/CloudSpawnerFar/Tree" node_paths=PackedStringArray("trunk_top")]
+script = ExtResource("17_x3cy0")
+trunk_top = NodePath("../TreeTrunk")
+player_path = NodePath("../../../../../Player")
+fade_duration = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Art/Sprites/CloudSpawnerFar/Tree/Entrance"]
+position = Vector2(133, 137.00002)
+scale = Vector2(0.18, 0.49300975)
+shape = SubResource("CircleShape2D_8lptr")
+
+[node name="TreeLeaves" type="Sprite2D" parent="Art/Sprites"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_6w2yd")
 texture = ExtResource("6_yrp7b")
@@ -232,6 +257,7 @@ region_enabled = true
 region_rect = Rect2(18, 153, 20, 17)
 
 [node name="P2" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
+z_index = 1
 material = SubResource("ShaderMaterial_7h3y6")
 position = Vector2(-25, 66)
 texture = ExtResource("12_7h3y6")
@@ -273,6 +299,7 @@ occluder = SubResource("OccluderPolygon2D_v5kbk")
 texture = ExtResource("9_6w2yd")
 
 [node name="Ground" type="Sprite2D" parent="Art/Sprites"]
+z_index = 1
 texture_filter = 1
 texture = ExtResource("10_yrp7b")
 
@@ -422,7 +449,7 @@ color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(270, 49)
 script = ExtResource("9_7h3y6")
 
