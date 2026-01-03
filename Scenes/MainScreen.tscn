@@ -602,6 +602,7 @@ texture = SubResource("GradientTexture2D_86eq2")
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(270, 49)
 script = ExtResource("9_7h3y6")
+dash_speed = 350.0
 
 [node name="DashBurst" type="GPUParticles2D" parent="Player"]
 emitting = false
