@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=56 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -10,8 +10,6 @@
 [ext_resource type="Shader" uid="uid://hvxjr5tlhirh" path="res://Shaders/GroundSway.gdshader" id="8_7h3y6"]
 [ext_resource type="Texture2D" uid="uid://b58t4keh4gaw7" path="res://IntroTitleScreen/Art/Leaf.png" id="8_wdlwy"]
 [ext_resource type="Texture2D" uid="uid://cv8eyygk178sh" path="res://IntroTitleScreen/Art/FloorPlants.png" id="9_6w2yd"]
-[ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://Scripts/PlayerMovement.gd" id="9_7h3y6"]
-[ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://Scripts/CameraScript.gd" id="10_i850e"]
 [ext_resource type="Texture2D" uid="uid://djxrnnumcwr61" path="res://IntroTitleScreen/Art/FloorTile.png" id="10_yrp7b"]
 [ext_resource type="Texture2D" uid="uid://dbm1660hydcnd" path="res://icon.svg" id="11_f1lux"]
 [ext_resource type="Texture2D" uid="uid://dfoi6cycrlb6m" path="res://IntroTitleScreen/Art/YellowP1.png" id="11_wdlwy"]
@@ -32,10 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 [ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
-[ext_resource type="Texture2D" uid="uid://dbkf4ak3kn8xb" path="res://Fairy.png" id="32_8lptr"]
-[ext_resource type="Script" uid="uid://yoa0t8wn2m0f" path="res://Scenes/LightFlutter.gd" id="33_tg2ix"]
-[ext_resource type="Texture2D" uid="uid://bwnv5e1w02b6r" path="res://TrailParticle.png" id="34_3rscq"]
-[ext_resource type="Script" uid="uid://ccvdx54s0l0eh" path="res://Scenes/ParticleSnap.gd" id="35_rgbuo"]
+[ext_resource type="PackedScene" uid="uid://bfvs5h0g8v7sn" path="res://Scenes/Player.tscn" id="31_dhx4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cy0"]
 size = Vector2(213.4981, 150.09846)
@@ -189,81 +184,6 @@ fill = 1
 fill_from = Vector2(0.48290598, 0.5)
 fill_to = Vector2(0.85470086, 0.19871795)
 
-[sub_resource type="Gradient" id="Gradient_c1xsu"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysbdf"]
-gradient = SubResource("Gradient_c1xsu")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgbuo"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 20.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_ysbdf")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
-
-[sub_resource type="Gradient" id="Gradient_rgbuo"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1xsu"]
-gradient = SubResource("Gradient_rgbuo")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg2ix"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 11.0
-direction = Vector3(0, -1, 0)
-spread = 180.0
-initial_velocity_min = 4.0
-initial_velocity_max = 6.0
-gravity = Vector3(0, 0, 0)
-damping_min = 2.0
-damping_max = 6.0000005
-color_ramp = SubResource("GradientTexture1D_c1xsu")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tg2ix"]
-atlas = ExtResource("32_8lptr")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3rscq"]
-atlas = ExtResource("32_8lptr")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgbuo"]
-atlas = ExtResource("32_8lptr")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c1xsu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tg2ix")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3rscq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgbuo")
-}],
-"loop": true,
-"name": &"fly",
-"speed": 9.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_tg2ix"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rscq"]
-gradient = SubResource("Gradient_tg2ix")
-fill = 1
-fill_from = Vector2(0.47413793, 0.48850575)
-fill_to = Vector2(0.83908045, 0.16091955)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajrcq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khvou"]
@@ -277,67 +197,69 @@ size = Vector2(319, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tg2ix"]
 size = Vector2(20, 211)
 
-[node name="Node2D" type="Node2D"]
+[node name="MainRoot" type="Node2D"]
 
-[node name="Art" type="Node2D" parent="."]
+[node name="TopSection" type="Node2D" parent="."]
+
+[node name="Art" type="Node2D" parent="TopSection"]
 position = Vector2(160, 96)
 
-[node name="Sprite2D" type="Sprite2D" parent="Art"]
+[node name="Sprite2D" type="Sprite2D" parent="TopSection/Art"]
 position = Vector2(0, 282)
 scale = Vector2(2.52, 2.8799977)
 texture = ExtResource("11_f1lux")
 
-[node name="Sprites" type="Node2D" parent="Art"]
+[node name="Sprites" type="Node2D" parent="TopSection/Art"]
 
-[node name="Background" type="Sprite2D" parent="Art/Sprites"]
+[node name="Background" type="Sprite2D" parent="TopSection/Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("1_qhfr7")
 
-[node name="FarMountians" type="Sprite2D" parent="Art/Sprites"]
+[node name="FarMountians" type="Sprite2D" parent="TopSection/Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("2_ivxpn")
 
-[node name="CloseMountians" type="Sprite2D" parent="Art/Sprites"]
+[node name="CloseMountians" type="Sprite2D" parent="TopSection/Art/Sprites"]
 texture_filter = 1
 texture = ExtResource("3_6w2yd")
 
-[node name="Tree" type="Node2D" parent="Art/Sprites"]
+[node name="Tree" type="Node2D" parent="TopSection/Art/Sprites"]
 position = Vector2(-160, -96)
 
-[node name="TreeInside" type="Sprite2D" parent="Art/Sprites/Tree"]
+[node name="TreeInside" type="Sprite2D" parent="TopSection/Art/Sprites/Tree"]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(160, 96)
 texture = ExtResource("15_dhx4k")
 
-[node name="TreeTopEdges" type="Sprite2D" parent="Art/Sprites/Tree"]
+[node name="TreeTopEdges" type="Sprite2D" parent="TopSection/Art/Sprites/Tree"]
 z_index = 1
 position = Vector2(160, 96)
 texture = ExtResource("15_x3cy0")
 
-[node name="TreeTrunk" type="Sprite2D" parent="Art/Sprites/Tree"]
+[node name="TreeTrunk" type="Sprite2D" parent="TopSection/Art/Sprites/Tree"]
 z_index = 2
 position = Vector2(160, 96)
 texture = ExtResource("4_6w2yd")
 
-[node name="Entrance" type="Area2D" parent="Art/Sprites/Tree" node_paths=PackedStringArray("trunk_top")]
+[node name="Entrance" type="Area2D" parent="TopSection/Art/Sprites/Tree" node_paths=PackedStringArray("trunk_top")]
 z_index = 2
 position = Vector2(6, 0)
 script = ExtResource("17_x3cy0")
 trunk_top = NodePath("../TreeTrunk")
-player_path = NodePath("../../../../Player")
+player_path = NodePath("../../../../../Player")
 fade_duration = 0.5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Art/Sprites/Tree/Entrance"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopSection/Art/Sprites/Tree/Entrance"]
 position = Vector2(117.5, 155)
 scale = Vector2(0.12646483, 0.49300975)
 shape = SubResource("RectangleShape2D_x3cy0")
 
-[node name="TreeLight" type="Node2D" parent="Art/Sprites"]
+[node name="TreeLight" type="Node2D" parent="TopSection/Art/Sprites"]
 light_mask = 4
 visibility_layer = 4
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Sprites/TreeLight"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Sprites/TreeLight"]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(-32, 82)
@@ -347,7 +269,7 @@ blend_mode = 2
 range_item_cull_mask = 4
 texture = SubResource("GradientTexture2D_8lptr")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Art/Sprites/TreeLight"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TopSection/Art/Sprites/TreeLight"]
 position = Vector2(-32, 71)
 amount = 6
 lifetime = 3.0
@@ -362,7 +284,7 @@ color_ramp = SubResource("Gradient_8lptr")
 hue_variation_min = -0.05
 hue_variation_max = 0.06
 
-[node name="CloudSpawnerFar" type="Node2D" parent="Art/Sprites"]
+[node name="CloudSpawnerFar" type="Node2D" parent="TopSection/Art/Sprites"]
 position = Vector2(-160, -96)
 script = ExtResource("16_x718d")
 cloud_scene = ExtResource("17_khvou")
@@ -377,29 +299,29 @@ bob_amp_min = 0.8
 bob_amp_max = 1.8
 kill_margin_right = 60.0
 
-[node name="Clouds" type="Node2D" parent="Art/Sprites/CloudSpawnerFar"]
+[node name="Clouds" type="Node2D" parent="TopSection/Art/Sprites/CloudSpawnerFar"]
 
-[node name="TreeLeaves" type="Sprite2D" parent="Art/Sprites"]
+[node name="TreeLeaves" type="Sprite2D" parent="TopSection/Art/Sprites"]
 z_index = 2
 texture_filter = 1
 material = SubResource("ShaderMaterial_6w2yd")
 texture = ExtResource("6_yrp7b")
 
-[node name="Grave" type="Sprite2D" parent="Art/Sprites"]
+[node name="Grave" type="Sprite2D" parent="TopSection/Art/Sprites"]
 z_index = 2
 texture_filter = 1
 texture = ExtResource("6_qhfr7")
 
-[node name="YellowPlants" type="Node2D" parent="Art/Sprites"]
+[node name="YellowPlants" type="Node2D" parent="TopSection/Art/Sprites"]
 
-[node name="P1" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
+[node name="P1" type="Sprite2D" parent="TopSection/Art/Sprites/YellowPlants"]
 material = SubResource("ShaderMaterial_wdlwy")
 position = Vector2(-132, 66)
 texture = ExtResource("11_wdlwy")
 region_enabled = true
 region_rect = Rect2(18, 153, 20, 17)
 
-[node name="P2" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
+[node name="P2" type="Sprite2D" parent="TopSection/Art/Sprites/YellowPlants"]
 z_index = 2
 material = SubResource("ShaderMaterial_7h3y6")
 position = Vector2(-25, 66)
@@ -407,21 +329,21 @@ texture = ExtResource("12_7h3y6")
 region_enabled = true
 region_rect = Rect2(117, 148, 34, 26)
 
-[node name="P3" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
+[node name="P3" type="Sprite2D" parent="TopSection/Art/Sprites/YellowPlants"]
 material = SubResource("ShaderMaterial_i850e")
 position = Vector2(76, 69)
 texture = ExtResource("13_i850e")
 region_enabled = true
 region_rect = Rect2(224, 155, 37, 19)
 
-[node name="P4" type="Sprite2D" parent="Art/Sprites/YellowPlants"]
+[node name="P4" type="Sprite2D" parent="TopSection/Art/Sprites/YellowPlants"]
 material = SubResource("ShaderMaterial_f1lux")
 position = Vector2(138, 59)
 texture = ExtResource("14_f1lux")
 region_enabled = true
 region_rect = Rect2(280, 139, 36, 29)
 
-[node name="FrontLeaves" type="GPUParticles2D" parent="Art/Sprites"]
+[node name="FrontLeaves" type="GPUParticles2D" parent="TopSection/Art/Sprites"]
 z_index = 2
 texture_filter = 1
 position = Vector2(-25, -31)
@@ -435,21 +357,21 @@ collision_base_size = 0.2
 trail_section_subdivisions = 8
 process_material = SubResource("ParticleProcessMaterial_iw2oa")
 
-[node name="Floor" type="LightOccluder2D" parent="Art/Sprites/FrontLeaves"]
+[node name="Floor" type="LightOccluder2D" parent="TopSection/Art/Sprites/FrontLeaves"]
 position = Vector2(0, 3)
 occluder = SubResource("OccluderPolygon2D_v5kbk")
 
-[node name="plants" type="Sprite2D" parent="Art/Sprites"]
+[node name="plants" type="Sprite2D" parent="TopSection/Art/Sprites"]
 texture = ExtResource("9_6w2yd")
 
-[node name="Ground" type="Sprite2D" parent="Art/Sprites"]
+[node name="Ground" type="Sprite2D" parent="TopSection/Art/Sprites"]
 z_index = 2
 texture_filter = 1
 texture = ExtResource("10_yrp7b")
 
-[node name="Candles" type="Node2D" parent="Art"]
+[node name="Candles" type="Node2D" parent="TopSection/Art"]
 
-[node name="Fire" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-5.5, 65.5)
 amount = 10
@@ -468,13 +390,13 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Fire2" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire2" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-4.5, 70.5)
 amount = 10
@@ -493,13 +415,13 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire2"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire2"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Fire3" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire3" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-6.5, 74.5)
 amount = 10
@@ -518,13 +440,13 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire3"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire3"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Fire4" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire4" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-15.5, 72.5)
 amount = 10
@@ -543,13 +465,13 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire4"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire4"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Fire5" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire5" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-17.5, 69.5)
 amount = 10
@@ -568,13 +490,13 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire5"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire5"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Fire6" type="CPUParticles2D" parent="Art/Candles"]
+[node name="Fire6" type="CPUParticles2D" parent="TopSection/Art/Candles"]
 z_index = 2
 position = Vector2(-20.5, 71.5)
 amount = 10
@@ -593,99 +515,54 @@ angle_max = 38.2
 scale_amount_curve = SubResource("Curve_okw2d")
 color_ramp = SubResource("Gradient_k6q2w")
 
-[node name="PointLight2D" type="PointLight2D" parent="Art/Candles/Fire6"]
+[node name="PointLight2D" type="PointLight2D" parent="TopSection/Art/Candles/Fire6"]
 scale = Vector2(0.11, 0.11)
 color = Color(0.7562728, 0.5162405, 0.27379042, 1)
 energy = 0.65
 texture = SubResource("GradientTexture2D_86eq2")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(270, 49)
-script = ExtResource("9_7h3y6")
-dash_speed = 350.0
-
-[node name="DashBurst" type="GPUParticles2D" parent="Player"]
-emitting = false
-amount = 70
-texture = ExtResource("34_3rscq")
-lifetime = 0.75
-one_shot = true
-explosiveness = 1.0
-randomness = 0.4
-process_material = SubResource("ParticleProcessMaterial_rgbuo")
-
-[node name="MainCamera" type="Camera2D" parent="Player"]
-top_level = true
-limit_enabled = false
-script = ExtResource("10_i850e")
-target_path = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-scale = Vector2(0.65, 0.65)
-shape = SubResource("RectangleShape2D_nldqp")
-
-[node name="Trail" type="GPUParticles2D" parent="Player"]
-amount = 14
-texture = ExtResource("34_3rscq")
-lifetime = 0.8
-randomness = 0.4
-process_material = SubResource("ParticleProcessMaterial_tg2ix")
-script = ExtResource("35_rgbuo")
-player_path = NodePath("..")
-
-[node name="Sprite" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_c1xsu")
-animation = &"fly"
-frame_progress = 0.2992272
-
-[node name="PointLight2D" type="PointLight2D" parent="Player/Sprite"]
-position = Vector2(0, -1)
-energy = 0.2
-texture = SubResource("GradientTexture2D_3rscq")
-script = ExtResource("33_tg2ix")
-min_energy = 0.05
-max_energy = 0.1
-min_size = 0.4
-max_size = 0.5
-pulse_time = 0.8
-
-[node name="NextScreenTrigger" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
+[node name="NextScreenTrigger" type="Area2D" parent="TopSection" node_paths=PackedStringArray("camera")]
 position = Vector2(126.99999, 199)
 scale = Vector2(1.7734592, 0.23928064)
 script = ExtResource("29_khvou")
-camera = NodePath("../Player/MainCamera")
+camera = NodePath("")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NextScreenTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopSection/NextScreenTrigger"]
 position = Vector2(4.3019845e-06, -8.358386)
 shape = SubResource("RectangleShape2D_ajrcq")
 
-[node name="CollisionShapes" type="Node2D" parent="."]
+[node name="CollisionShapes" type="Node2D" parent="TopSection"]
 
-[node name="IntroScene" type="StaticBody2D" parent="CollisionShapes"]
+[node name="IntroScene" type="StaticBody2D" parent="TopSection/CollisionShapes"]
 physics_material_override = SubResource("PhysicsMaterial_khvou")
 
-[node name="RightFloor" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+[node name="RightFloor" type="CollisionPolygon2D" parent="TopSection/CollisionShapes/IntroScene"]
 position = Vector2(0, 1)
 polygon = PackedVector2Array(143, 174, 143, 192, 320, 192, 320, 168, 228, 174)
 
-[node name="LeftFloor" type="CollisionShape2D" parent="CollisionShapes/IntroScene"]
+[node name="LeftFloor" type="CollisionShape2D" parent="TopSection/CollisionShapes/IntroScene"]
 position = Vector2(55, 183)
 shape = SubResource("RectangleShape2D_khvou")
 
-[node name="Tree" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+[node name="Tree" type="CollisionPolygon2D" parent="TopSection/CollisionShapes/IntroScene"]
 polygon = PackedVector2Array(169, 7, 197, 30, 205, 66, 194, 101, 169, 125, 145.27167, 125.86287, 138, 126, 137, 119, 122, 119, 118, 146, 115, 166, 110, 173, 41, 7)
 
-[node name="Grave" type="CollisionPolygon2D" parent="CollisionShapes/IntroScene"]
+[node name="Grave" type="CollisionPolygon2D" parent="TopSection/CollisionShapes/IntroScene"]
 polygon = PackedVector2Array(138, 149, 150, 149, 153, 155, 153, 174, 144, 174, 138, 151)
 
-[node name="Roof" type="CollisionShape2D" parent="CollisionShapes/IntroScene"]
+[node name="Roof" type="CollisionShape2D" parent="TopSection/CollisionShapes/IntroScene"]
 position = Vector2(160, -10)
 shape = SubResource("RectangleShape2D_8lptr")
 
-[node name="left" type="CollisionShape2D" parent="CollisionShapes/IntroScene"]
+[node name="left" type="CollisionShape2D" parent="TopSection/CollisionShapes/IntroScene"]
 position = Vector2(-10, 86.5)
 shape = SubResource("RectangleShape2D_tg2ix")
 
-[node name="right" type="CollisionShape2D" parent="CollisionShapes/IntroScene"]
+[node name="right" type="CollisionShape2D" parent="TopSection/CollisionShapes/IntroScene"]
 position = Vector2(330, 86)
 shape = SubResource("RectangleShape2D_tg2ix")
+
+[node name="Section2" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("31_dhx4k")]
+position = Vector2(270, 49)

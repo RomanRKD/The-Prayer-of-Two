@@ -1,0 +1,132 @@
+[gd_scene load_steps=20 format=3 uid="uid://bfvs5h0g8v7sn"]
+
+[ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://Scripts/PlayerMovement.gd" id="1_nn08x"]
+[ext_resource type="Texture2D" uid="uid://bwnv5e1w02b6r" path="res://TrailParticle.png" id="2_52ee3"]
+[ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://Scripts/CameraScript.gd" id="3_bhhdu"]
+[ext_resource type="Script" uid="uid://ccvdx54s0l0eh" path="res://Scenes/ParticleSnap.gd" id="4_megsn"]
+[ext_resource type="Texture2D" uid="uid://dbkf4ak3kn8xb" path="res://Fairy.png" id="5_yoq75"]
+[ext_resource type="Script" uid="uid://yoa0t8wn2m0f" path="res://Scenes/LightFlutter.gd" id="6_ksbbd"]
+
+[sub_resource type="Gradient" id="Gradient_c1xsu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysbdf"]
+gradient = SubResource("Gradient_c1xsu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgbuo"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ysbdf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
+
+[sub_resource type="Gradient" id="Gradient_rgbuo"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1xsu"]
+gradient = SubResource("Gradient_rgbuo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg2ix"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 11.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 6.0000005
+color_ramp = SubResource("GradientTexture1D_c1xsu")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg2ix"]
+atlas = ExtResource("5_yoq75")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rscq"]
+atlas = ExtResource("5_yoq75")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgbuo"]
+atlas = ExtResource("5_yoq75")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1xsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg2ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rscq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgbuo")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 9.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_tg2ix"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rscq"]
+gradient = SubResource("Gradient_tg2ix")
+fill = 1
+fill_from = Vector2(0.47413793, 0.48850575)
+fill_to = Vector2(0.83908045, 0.16091955)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_nn08x")
+dash_speed = 350.0
+
+[node name="DashBurst" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 70
+texture = ExtResource("2_52ee3")
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_rgbuo")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+top_level = true
+limit_enabled = false
+script = ExtResource("3_bhhdu")
+target_path = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.65, 0.65)
+shape = SubResource("RectangleShape2D_nldqp")
+
+[node name="Trail" type="GPUParticles2D" parent="."]
+amount = 14
+texture = ExtResource("2_52ee3")
+lifetime = 0.8
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_tg2ix")
+script = ExtResource("4_megsn")
+player_path = NodePath("..")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_c1xsu")
+animation = &"fly"
+frame_progress = 0.2992272
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite"]
+position = Vector2(0, -1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_3rscq")
+script = ExtResource("6_ksbbd")
+min_energy = 0.05
+max_energy = 0.1
+min_size = 0.4
+max_size = 0.5
+pulse_time = 0.8
