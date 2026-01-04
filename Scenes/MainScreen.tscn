@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=57 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://drdoqm5ogkxjc" path="res://Scenes/TrunkToggle.gd" id="17_x3cy0"]
 [ext_resource type="Texture2D" uid="uid://dojcl0yejhda" path="res://IntroTitleScreen/Art/Clouds/Clouds1.png" id="18_ajrcq"]
 [ext_resource type="Texture2D" uid="uid://dqdwi34yhjj1e" path="res://IntroTitleScreen/Art/Clouds/Clouds2.png" id="19_dhx4k"]
+[ext_resource type="Texture2D" uid="uid://b8m7ddfuim6rq" path="res://IntroTitleScreen/Art/Clouds/HotairBalloon.png" id="19_x3cy0"]
 [ext_resource type="Texture2D" uid="uid://c6fwnnh4vs646" path="res://IntroTitleScreen/Art/Clouds/Clouds3.png" id="20_x3cy0"]
 [ext_resource type="Texture2D" uid="uid://4n8hhicgf6fw" path="res://IntroTitleScreen/Art/Clouds/Clouds4.png" id="21_8lptr"]
 [ext_resource type="Texture2D" uid="uid://dfapecsgfwe01" path="res://IntroTitleScreen/Art/Clouds/Clouds5.png" id="22_tg2ix"]
@@ -288,8 +289,8 @@ hue_variation_max = 0.06
 position = Vector2(-160, -96)
 script = ExtResource("16_x718d")
 cloud_scene = ExtResource("17_khvou")
-cloud_textures = Array[Texture2D]([ExtResource("18_ajrcq"), ExtResource("19_dhx4k"), ExtResource("20_x3cy0"), ExtResource("21_8lptr"), ExtResource("22_tg2ix"), ExtResource("23_3rscq"), ExtResource("24_rgbuo"), ExtResource("25_c1xsu")])
-cloud_weights = Array[float]([8.0, 3.0, 9.0, 9.0, 6.0, 3.0, 9.0, 9.0])
+cloud_textures = Array[Texture2D]([ExtResource("18_ajrcq"), ExtResource("19_dhx4k"), ExtResource("20_x3cy0"), ExtResource("21_8lptr"), ExtResource("22_tg2ix"), ExtResource("23_3rscq"), ExtResource("24_rgbuo"), ExtResource("25_c1xsu"), ExtResource("19_x3cy0")])
+cloud_weights = Array[float]([8.0, 3.0, 9.0, 9.0, 6.0, 3.0, 9.0, 9.0, 10.0])
 cloud_count = 4
 y_top = 25.0
 y_bottom = 100.0
