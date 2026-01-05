@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dyh61n5afex86"]
+[gd_scene load_steps=75 format=3 uid="uid://dyh61n5afex86"]
 
 [ext_resource type="Texture2D" uid="uid://c3y82psjmfmdn" path="res://IntroTitleScreen/Art/Background.png" id="1_qhfr7"]
 [ext_resource type="Texture2D" uid="uid://d22pjsktkwwvu" path="res://IntroTitleScreen/Art/FarMountians.png" id="2_ivxpn"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" uid="uid://hvxjr5tlhirh" path="res://Shaders/GroundSway.gdshader" id="8_7h3y6"]
 [ext_resource type="Texture2D" uid="uid://b58t4keh4gaw7" path="res://IntroTitleScreen/Art/Leaf.png" id="8_wdlwy"]
 [ext_resource type="Texture2D" uid="uid://cv8eyygk178sh" path="res://IntroTitleScreen/Art/FloorPlants.png" id="9_6w2yd"]
+[ext_resource type="Script" uid="uid://djnl1ecy1nlx6" path="res://Scripts/PlayerMovement.gd" id="9_7h3y6"]
+[ext_resource type="Script" uid="uid://d26b3a1heguts" path="res://Scripts/CameraScript.gd" id="10_i850e"]
 [ext_resource type="Texture2D" uid="uid://djxrnnumcwr61" path="res://IntroTitleScreen/Art/FloorTile.png" id="10_yrp7b"]
 [ext_resource type="Texture2D" uid="uid://dbm1660hydcnd" path="res://icon.svg" id="11_f1lux"]
 [ext_resource type="Texture2D" uid="uid://dfoi6cycrlb6m" path="res://IntroTitleScreen/Art/YellowP1.png" id="11_wdlwy"]
@@ -31,7 +33,10 @@
 [ext_resource type="Texture2D" uid="uid://ck5ne40rlsldr" path="res://IntroTitleScreen/Art/Clouds/Clouds7.png" id="24_rgbuo"]
 [ext_resource type="Texture2D" uid="uid://m8qtiwhxh76w" path="res://IntroTitleScreen/Art/Clouds/Clouds8.png" id="25_c1xsu"]
 [ext_resource type="Script" uid="uid://cqbfm0docqrlr" path="res://Scenes/next_screen_trigger.gd" id="29_khvou"]
-[ext_resource type="PackedScene" uid="uid://bfvs5h0g8v7sn" path="res://Scenes/Player.tscn" id="31_dhx4k"]
+[ext_resource type="Script" uid="uid://yoa0t8wn2m0f" path="res://Scenes/LightFlutter.gd" id="33_tg2ix"]
+[ext_resource type="Texture2D" uid="uid://bwnv5e1w02b6r" path="res://TrailParticle.png" id="34_3rscq"]
+[ext_resource type="Script" uid="uid://ccvdx54s0l0eh" path="res://Scenes/ParticleSnap.gd" id="35_rgbuo"]
+[ext_resource type="Texture2D" uid="uid://dbkf4ak3kn8xb" path="res://Fairy.png" id="37_ysbdf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cy0"]
 size = Vector2(213.4981, 150.09846)
@@ -197,6 +202,81 @@ size = Vector2(319, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tg2ix"]
 size = Vector2(20, 211)
+
+[sub_resource type="Gradient" id="Gradient_c1xsu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysbdf"]
+gradient = SubResource("Gradient_c1xsu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rgbuo"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ysbdf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nldqp"]
+
+[sub_resource type="Gradient" id="Gradient_rgbuo"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1xsu"]
+gradient = SubResource("Gradient_rgbuo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg2ix"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 11.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 6.0000005
+color_ramp = SubResource("GradientTexture1D_c1xsu")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg2ix"]
+atlas = ExtResource("37_ysbdf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rscq"]
+atlas = ExtResource("37_ysbdf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgbuo"]
+atlas = ExtResource("37_ysbdf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1xsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg2ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rscq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgbuo")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 9.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_tg2ix"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rscq"]
+gradient = SubResource("Gradient_tg2ix")
+fill = 1
+fill_from = Vector2(0.47413793, 0.48850575)
+fill_to = Vector2(0.83908045, 0.16091955)
 
 [node name="MainRoot" type="Node2D"]
 
@@ -526,7 +606,7 @@ texture = SubResource("GradientTexture2D_86eq2")
 position = Vector2(126.99999, 199)
 scale = Vector2(1.7734592, 0.23928064)
 script = ExtResource("29_khvou")
-camera = NodePath("")
+camera = NodePath("../../Player/MainCamera")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopSection/NextScreenTrigger"]
 position = Vector2(4.3019845e-06, -8.358386)
@@ -565,5 +645,52 @@ shape = SubResource("RectangleShape2D_tg2ix")
 
 [node name="Section2" type="Node2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("31_dhx4k")]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(270, 49)
+script = ExtResource("9_7h3y6")
+dash_speed = 350.0
+
+[node name="DashBurst" type="GPUParticles2D" parent="Player"]
+emitting = false
+amount = 70
+texture = ExtResource("34_3rscq")
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_rgbuo")
+
+[node name="MainCamera" type="Camera2D" parent="Player"]
+top_level = true
+limit_enabled = false
+script = ExtResource("10_i850e")
+target_path = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(0.65, 0.65)
+shape = SubResource("RectangleShape2D_nldqp")
+
+[node name="Trail" type="GPUParticles2D" parent="Player"]
+amount = 14
+texture = ExtResource("34_3rscq")
+lifetime = 0.8
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_tg2ix")
+script = ExtResource("35_rgbuo")
+player_path = NodePath("..")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_c1xsu")
+animation = &"fly"
+frame_progress = 0.2992272
+
+[node name="PointLight2D" type="PointLight2D" parent="Player/Sprite"]
+position = Vector2(0, -1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_3rscq")
+script = ExtResource("33_tg2ix")
+min_energy = 0.05
+max_energy = 0.1
+min_size = 0.4
+max_size = 0.5
+pulse_time = 0.8
